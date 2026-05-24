@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UOK — Privacy Policy</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f9f9f9;
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 40px;
+    }
+    h2 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-top: 36px;
+      margin-bottom: 10px;
+      color: #1a1a1a;
+    }
+    p {
+      font-size: 15px;
+      color: #444;
+      white-space: pre-line;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #e5e5e5;
+      margin: 40px 0;
+    }
+    .lang-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .lang-toggle button {
+      padding: 6px 14px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      font-size: 13px;
+      color: #333;
+    }
+    .lang-toggle button.active {
+      background: #1a1a1a;
+      color: white;
+      border-color: #1a1a1a;
+    }
+    .content { display: none; }
+    .content.active { display: block; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>UOK — Are you OK?</h1>
+  <p class="subtitle">Last updated: May 2026</p>
+
+  <div class="lang-toggle">
+    <button class="active" onclick="showLang('en', this)">English</button>
+    <button onclick="showLang('zh', this)">中文</button>
+  </div>
+
+  <!-- English -->
+  <div class="content active" id="en">
+    <h2>Overview</h2>
+    <p>UOK ("Are you OK?") is a personal safety check-in app. When you miss a check-in window, your nominated emergency contacts are notified. This policy explains what data we collect, how we use it, and your rights.</p>
+
+    <h2>Data We Collect</h2>
+    <p>• Emergency contact information – the names, email addresses, and phone numbers you add. Stored encrypted on your device via iOS Keychain.
+• Check-in timestamps – the date and time of each check-in you record.
+• Location (optional) – if you enable location sharing, your GPS coordinates at check-in time are attached to alerts sent to your contacts. Location is never collected in the background.
+• Device identifier – a random ID generated locally on your device. It is not linked to your name or identity.</p>
+
+    <h2>How We Use Your Data</h2>
+    <p>• To deliver alert notifications to your emergency contacts when a check-in is missed.
+• To schedule daily reminder push notifications on your device.
+• To display your check-in history within the app.</p>
+
+    <h2>Data Sharing</h2>
+    <p>Your emergency contact details and device identifier are transmitted to our server solely to enable alert delivery. Your location (if enabled) is included in the alert message sent to your contacts.
+
+We do not sell, rent, or share your data with advertisers, analytics providers, or any third parties beyond what is necessary to deliver the service.</p>
+
+    <h2>Data Storage &amp; Security</h2>
+    <p>• Contact information is encrypted on your device using iOS Keychain (expo-secure-store).
+• Our server retains only the minimum data required to deliver notifications.
+• No passwords or authentication credentials are stored.</p>
+
+    <h2>Your Rights</h2>
+    <p>• Delete all app data at any time via Settings → Reset All Data.
+• Disable location sharing at any time in Settings.
+• Remove emergency contacts at any time.
+• No account or registration is required to use this app.</p>
+
+    <h2>Children's Privacy</h2>
+    <p>UOK is not directed at children under 13. We do not knowingly collect data from children.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>We may update this policy from time to time. The latest version is always available at this URL and within the app.</p>
+
+    <h2>Contact</h2>
+    <p>For any privacy-related questions or data requests, please contact us through the App Store listing.</p>
+  </div>
+
+  <!-- 中文 -->
+  <div class="content" id="zh">
+    <h2>概述</h2>
+    <p>UOK（"Are you OK?"）是一款个人安全签到 App。当您在设定时间内未完成签到时，您指定的紧急联系人将收到通知。本政策说明我们收集哪些数据、如何使用以及您的权利。</p>
+
+    <h2>我们收集的数据</h2>
+    <p>• 紧急联系人信息——您填写的姓名、邮箱和手机号码，通过 iOS Keychain 加密存储在您的设备上。
+• 签到时间戳——您每次签到的日期和时间。
+• 位置（可选）——如果您开启位置共享，签到时的 GPS 坐标将附在发送给联系人的通知中。位置信息不会在后台持续收集。
+• 设备标识符——在您设备本地随机生成的 ID，与您的姓名或身份无关。</p>
+
+    <h2>数据用途</h2>
+    <p>• 在您未签到时向紧急联系人发送提醒通知。
+• 在您的设备上安排每日提醒推送通知。
+• 在 App 内展示您的签到记录。</p>
+
+    <h2>数据共享</h2>
+    <p>您的紧急联系人信息和设备标识符仅用于向我们的服务器传输以实现通知发送功能。如果开启了位置共享，您的位置将包含在发送给联系人的通知消息中。
+
+我们不会将您的数据出售、出租或以其他方式共享给广告商、分析服务商或任何与提供服务无关的第三方。</p>
+
+    <h2>数据存储与安全</h2>
+    <p>• 联系人信息通过 iOS Keychain（expo-secure-store）在您的设备上加密存储。
+• 我们的服务器仅保留发送通知所必需的最少数据。
+• 不存储任何密码或身份验证凭据。</p>
+
+    <h2>您的权利</h2>
+    <p>• 随时通过"设置 → 重置所有数据"删除全部 App 数据。
+• 随时在设置中关闭位置共享。
+• 随时删除紧急联系人。
+• 使用本 App 无需注册账号。</p>
+
+    <h2>儿童隐私</h2>
+    <p>UOK 不面向 13 岁以下儿童。我们不会故意收集儿童的个人数据。</p>
+
+    <h2>政策变更</h2>
+    <p>我们可能不时更新本政策。最新版本始终可在此网址及 App 内查阅。</p>
+
+    <h2>联系我们</h2>
+    <p>如有任何隐私相关问题或数据请求，请通过 App Store 页面联系我们。</p>
+  </div>
+</div>
+
+<script>
+  function showLang(lang, btn) {
+    document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+    document.getElementById(lang).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
