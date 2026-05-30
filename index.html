@@ -17,158 +17,504 @@
       margin: 0 auto;
       padding: 48px 24px 80px;
     }
-    h1 {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .subtitle {
-      font-size: 14px;
-      color: #888;
-      margin-bottom: 40px;
-    }
-    h2 {
-      font-size: 17px;
-      font-weight: 700;
-      margin-top: 36px;
-      margin-bottom: 10px;
-      color: #1a1a1a;
-    }
-    p {
-      font-size: 15px;
-      color: #444;
-      white-space: pre-line;
-    }
-    hr {
-      border: none;
-      border-top: 1px solid #e5e5e5;
-      margin: 40px 0;
-    }
-    .lang-toggle {
+    h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+    .subtitle { font-size: 14px; color: #888; margin-bottom: 32px; }
+    h2 { font-size: 17px; font-weight: 700; margin-top: 36px; margin-bottom: 10px; color: #1a1a1a; }
+    p { font-size: 15px; color: #444; white-space: pre-line; }
+    hr { border: none; border-top: 1px solid #e5e5e5; margin: 40px 0; }
+    .lang-bar {
       display: flex;
-      gap: 8px;
-      margin-bottom: 32px;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 36px;
     }
-    .lang-toggle button {
-      padding: 6px 14px;
+    .lang-bar label { font-size: 13px; color: #888; white-space: nowrap; }
+    .lang-bar select {
+      flex: 1;
+      max-width: 260px;
+      padding: 7px 12px;
       border: 1px solid #ccc;
-      border-radius: 20px;
+      border-radius: 8px;
       background: white;
+      font-size: 14px;
+      color: #1a1a1a;
       cursor: pointer;
-      font-size: 13px;
-      color: #333;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 30px;
     }
-    .lang-toggle button.active {
-      background: #1a1a1a;
-      color: white;
-      border-color: #1a1a1a;
-    }
-    .content { display: none; }
-    .content.active { display: block; }
+    .lang-bar select:focus { outline: 2px solid #2E7D32; border-color: transparent; }
   </style>
 </head>
 <body>
 <div class="container">
-  <h1>UOKnow — Are you OK?</h1>
-  <p class="subtitle">Last updated: May 2026</p>
+  <h1>UOKnow</h1>
+  <p class="subtitle" id="subtitle">Last updated: May 2026</p>
 
-  <div class="lang-toggle">
-    <button class="active" onclick="showLang('en', this)">English</button>
-    <button onclick="showLang('zh', this)">中文</button>
+  <div class="lang-bar">
+    <label for="langSelect">🌐</label>
+    <select id="langSelect" onchange="render(this.value)">
+      <option value="en">English</option>
+      <option value="zh">中文（简体）</option>
+      <option value="zh-TW">中文（繁體）</option>
+      <option value="ja">日本語</option>
+      <option value="ko">한국어</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+      <option value="pt">Português</option>
+      <option value="it">Italiano</option>
+      <option value="ru">Русский</option>
+      <option value="ar">العربية</option>
+      <option value="hi">हिंदी</option>
+      <option value="th">ไทย</option>
+      <option value="vi">Tiếng Việt</option>
+      <option value="id">Bahasa Indonesia</option>
+      <option value="ms">Bahasa Melayu</option>
+      <option value="nl">Nederlands</option>
+      <option value="pl">Polski</option>
+      <option value="tr">Türkçe</option>
+      <option value="uk">Українська</option>
+      <option value="sv">Svenska</option>
+      <option value="no">Norsk</option>
+      <option value="da">Dansk</option>
+      <option value="fi">Suomi</option>
+    </select>
   </div>
 
-  <!-- English -->
-  <div class="content active" id="en">
-    <h2>Overview</h2>
-    <p>UOKnow ("Are you OK?") is a personal safety check-in app. When you miss a check-in window, your nominated emergency contacts are notified. This policy explains what data we collect, how we use it, and your rights.</p>
-
-    <h2>Data We Collect</h2>
-    <p>• Emergency contact information – the names, email addresses, and phone numbers you add. Stored encrypted on your device via iOS Keychain.
-• Check-in timestamps – the date and time of each check-in you record.
-• Location (optional) – if you enable location sharing, your GPS coordinates at check-in time are attached to alerts sent to your contacts. Location is never collected in the background.
-• Device identifier – a random ID generated locally on your device. It is not linked to your name or identity.</p>
-
-    <h2>How We Use Your Data</h2>
-    <p>• To deliver alert notifications to your emergency contacts when a check-in is missed.
-• To schedule daily reminder push notifications on your device.
-• To display your check-in history within the app.</p>
-
-    <h2>Data Sharing</h2>
-    <p>Your emergency contact details and device identifier are transmitted to our server solely to enable alert delivery. Your location (if enabled) is included in the alert message sent to your contacts.
-
-We do not sell, rent, or share your data with advertisers, analytics providers, or any third parties beyond what is necessary to deliver the service.</p>
-
-    <h2>Data Storage &amp; Security</h2>
-    <p>• Contact information is encrypted on your device using iOS Keychain (expo-secure-store).
-• Our server retains only the minimum data required to deliver notifications.
-• No passwords or authentication credentials are stored.</p>
-
-    <h2>Your Rights</h2>
-    <p>• Delete all app data at any time via Settings → Reset All Data.
-• Disable location sharing at any time in Settings.
-• Remove emergency contacts at any time.
-• No account or registration is required to use this app.</p>
-
-    <h2>Children's Privacy</h2>
-    <p>UOKnow is not directed at children under 13. We do not knowingly collect data from children.</p>
-
-    <h2>Changes to This Policy</h2>
-    <p>We may update this policy from time to time. The latest version is always available at this URL and within the app.</p>
-
-    <h2>Contact</h2>
-    <p>For any privacy-related questions or data requests, please contact us through the App Store listing.</p>
-  </div>
-
-  <!-- 中文 -->
-  <div class="content" id="zh">
-    <h2>概述</h2>
-    <p>UOKnow（"Are you OK now?"）是一款个人安全签到 App。当您在设定时间内未完成签到时，您指定的紧急联系人将收到通知。本政策说明我们收集哪些数据、如何使用以及您的权利。</p>
-
-    <h2>我们收集的数据</h2>
-    <p>• 紧急联系人信息——您填写的姓名、邮箱和手机号码，通过 iOS Keychain 加密存储在您的设备上。
-• 签到时间戳——您每次签到的日期和时间。
-• 位置（可选）——如果您开启位置共享，签到时的 GPS 坐标将附在发送给联系人的通知中。位置信息不会在后台持续收集。
-• 设备标识符——在您设备本地随机生成的 ID，与您的姓名或身份无关。</p>
-
-    <h2>数据用途</h2>
-    <p>• 在您未签到时向紧急联系人发送提醒通知。
-• 在您的设备上安排每日提醒推送通知。
-• 在 App 内展示您的签到记录。</p>
-
-    <h2>数据共享</h2>
-    <p>您的紧急联系人信息和设备标识符仅用于向我们的服务器传输以实现通知发送功能。如果开启了位置共享，您的位置将包含在发送给联系人的通知消息中。
-
-我们不会将您的数据出售、出租或以其他方式共享给广告商、分析服务商或任何与提供服务无关的第三方。</p>
-
-    <h2>数据存储与安全</h2>
-    <p>• 联系人信息通过 iOS Keychain（expo-secure-store）在您的设备上加密存储。
-• 我们的服务器仅保留发送通知所必需的最少数据。
-• 不存储任何密码或身份验证凭据。</p>
-
-    <h2>您的权利</h2>
-    <p>• 随时通过"设置 → 重置所有数据"删除全部 App 数据。
-• 随时在设置中关闭位置共享。
-• 随时删除紧急联系人。
-• 使用本 App 无需注册账号。</p>
-
-    <h2>儿童隐私</h2>
-    <p>UOKnow 不面向 13 岁以下儿童。我们不会故意收集儿童的个人数据。</p>
-
-    <h2>政策变更</h2>
-    <p>我们可能不时更新本政策。最新版本始终可在此网址及 App 内查阅。</p>
-
-    <h2>联系我们</h2>
-    <p>如有任何隐私相关问题或数据请求，请通过 App Store 页面联系我们。</p>
-  </div>
+  <div id="content"></div>
 </div>
 
 <script>
-  function showLang(lang, btn) {
-    document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
-    document.getElementById(lang).classList.add('active');
-    btn.classList.add('active');
+const T = {
+  en: {
+    title: "UOKnow — Are you OK now?",
+    subtitle: "Last updated: May 2026",
+    dir: "ltr",
+    s: [
+      { h: "Overview", p: "UOKnow (\"Are you OK now?\") is a personal safety check-in app. When you miss a check-in window, your nominated emergency contacts are notified. This policy explains what data we collect, how we use it, and your rights." },
+      { h: "Data We Collect", p: "• Emergency contact information – the names, email addresses, and phone numbers you add. Stored encrypted on your device via iOS Keychain.\n• Check-in timestamps – the date and time of each check-in you record.\n• Location (optional) – if you enable location sharing, your GPS coordinates at check-in time are attached to alerts sent to your contacts. Location is never collected in the background.\n• Device identifier – a random ID generated locally on your device. It is not linked to your name or identity." },
+      { h: "How We Use Your Data", p: "• To deliver alert notifications to your emergency contacts when a check-in is missed.\n• To schedule daily reminder push notifications on your device.\n• To display your check-in history within the app." },
+      { h: "Data Sharing", p: "Your emergency contact details and device identifier are transmitted to our server solely to enable alert delivery. Your location (if enabled) is included in the alert message sent to your contacts.\n\nWe do not sell, rent, or share your data with advertisers, analytics providers, or any third parties beyond what is necessary to deliver the service." },
+      { h: "Data Storage & Security", p: "• Contact information is encrypted on your device using iOS Keychain (expo-secure-store).\n• Our server retains only the minimum data required to deliver notifications.\n• No passwords or authentication credentials are stored." },
+      { h: "Your Rights", p: "• Delete all app data at any time via Settings → Reset All Data.\n• Disable location sharing at any time in Settings.\n• Remove emergency contacts at any time.\n• No account or registration is required to use this app." },
+      { h: "Children's Privacy", p: "UOKnow is not directed at children under 13. We do not knowingly collect data from children." },
+      { h: "Changes to This Policy", p: "We may update this policy from time to time. The latest version is always available at this URL and within the app." },
+      { h: "Contact", p: "For any privacy-related questions or data requests, please contact us through the App Store listing." }
+    ]
+  },
+  zh: {
+    title: "UOKnow — 你现在还好吗？",
+    subtitle: "最后更新：2026年5月",
+    dir: "ltr",
+    s: [
+      { h: "概述", p: "UOKnow（"你现在还好吗？"）是一款个人安全签到 App。当您在设定时间内未完成签到时，您指定的紧急联系人将收到通知。本政策说明我们收集哪些数据、如何使用以及您的权利。" },
+      { h: "我们收集的数据", p: "• 紧急联系人信息——您填写的姓名、邮箱和手机号码，通过 iOS Keychain 加密存储在您的设备上。\n• 签到时间戳——您每次签到的日期和时间。\n• 位置（可选）——如果您开启位置共享，签到时的 GPS 坐标将附在发送给联系人的通知中。位置信息不会在后台持续收集。\n• 设备标识符——在您设备本地随机生成的 ID，与您的姓名或身份无关。" },
+      { h: "数据用途", p: "• 在您未签到时向紧急联系人发送提醒通知。\n• 在您的设备上安排每日提醒推送通知。\n• 在 App 内展示您的签到记录。" },
+      { h: "数据共享", p: "您的紧急联系人信息和设备标识符仅用于向我们的服务器传输以实现通知发送功能。如果开启了位置共享，您的位置将包含在发送给联系人的通知消息中。\n\n我们不会将您的数据出售、出租或以其他方式共享给广告商、分析服务商或任何与提供服务无关的第三方。" },
+      { h: "数据存储与安全", p: "• 联系人信息通过 iOS Keychain（expo-secure-store）在您的设备上加密存储。\n• 我们的服务器仅保留发送通知所必需的最少数据。\n• 不存储任何密码或身份验证凭据。" },
+      { h: "您的权利", p: "• 随时通过"设置 → 重置所有数据"删除全部 App 数据。\n• 随时在设置中关闭位置共享。\n• 随时删除紧急联系人。\n• 使用本 App 无需注册账号。" },
+      { h: "儿童隐私", p: "UOKnow 不面向 13 岁以下儿童。我们不会故意收集儿童的个人数据。" },
+      { h: "政策变更", p: "我们可能不时更新本政策。最新版本始终可在此网址及 App 内查阅。" },
+      { h: "联系我们", p: "如有任何隐私相关问题或数据请求，请通过 App Store 页面联系我们。" }
+    ]
+  },
+  "zh-TW": {
+    title: "UOKnow — 你現在還好嗎？",
+    subtitle: "最後更新：2026年5月",
+    dir: "ltr",
+    s: [
+      { h: "概述", p: "UOKnow（「你現在還好嗎？」）是一款個人安全打卡 App。當您在設定時間內未完成打卡時，您指定的緊急聯絡人將收到通知。本政策說明我們收集哪些資料、如何使用以及您的權利。" },
+      { h: "我們收集的資料", p: "• 緊急聯絡人資訊——您填寫的姓名、電子郵件和電話號碼，透過 iOS Keychain 加密儲存在您的裝置上。\n• 打卡時間戳——您每次打卡的日期和時間。\n• 位置（選填）——如果您啟用位置分享，打卡時的 GPS 座標將附在發送給聯絡人的通知中。位置資訊不會在背景持續收集。\n• 裝置識別碼——在您裝置本地隨機產生的 ID，與您的姓名或身份無關。" },
+      { h: "資料用途", p: "• 在您未打卡時向緊急聯絡人發送提醒通知。\n• 在您的裝置上安排每日提醒推播通知。\n• 在 App 內展示您的打卡記錄。" },
+      { h: "資料共享", p: "您的緊急聯絡人資訊和裝置識別碼僅傳輸至我們的伺服器以實現通知發送功能。如果啟用了位置分享，您的位置將包含在發送給聯絡人的通知訊息中。\n\n我們不會將您的資料出售、出租或以其他方式分享給廣告商、分析服務商或任何與提供服務無關的第三方。" },
+      { h: "資料儲存與安全", p: "• 聯絡人資訊透過 iOS Keychain（expo-secure-store）在您的裝置上加密儲存。\n• 我們的伺服器僅保留發送通知所必要的最少資料。\n• 不儲存任何密碼或身份驗證憑據。" },
+      { h: "您的權利", p: "• 隨時透過「設定 → 重置所有資料」刪除全部 App 資料。\n• 隨時在設定中關閉位置分享。\n• 隨時刪除緊急聯絡人。\n• 使用本 App 無需註冊帳號。" },
+      { h: "兒童隱私", p: "UOKnow 不面向 13 歲以下兒童。我們不會故意收集兒童的個人資料。" },
+      { h: "政策變更", p: "我們可能不時更新本政策。最新版本始終可在此網址及 App 內查閱。" },
+      { h: "聯絡我們", p: "如有任何隱私相關問題或資料請求，請透過 App Store 頁面聯絡我們。" }
+    ]
+  },
+  ja: {
+    title: "UOKnow — 今大丈夫ですか？",
+    subtitle: "最終更新：2026年5月",
+    dir: "ltr",
+    s: [
+      { h: "概要", p: "UOKnow（「今大丈夫ですか？」）は個人安全確認アプリです。設定した時間内にチェックインが行われなかった場合、指定した緊急連絡先に通知されます。このポリシーでは、収集するデータ、その使用方法、およびお客様の権利について説明します。" },
+      { h: "収集するデータ", p: "• 緊急連絡先情報 – 登録いただいた氏名、メールアドレス、電話番号。iOS Keychain を使用してデバイス上に暗号化して保存されます。\n• チェックインのタイムスタンプ – チェックインの日時。\n• 位置情報（任意）– 位置情報共有を有効にした場合、チェックイン時の GPS 座標が緊急連絡先への通知に含まれます。位置情報はバックグラウンドで収集されることはありません。\n• デバイス識別子 – デバイス上でローカルに生成されるランダム ID です。氏名や個人情報とは紐付けられません。" },
+      { h: "データの利用目的", p: "• チェックインが行われなかった際に緊急連絡先へ通知を送信するため。\n• デバイスへの毎日のリマインダープッシュ通知をスケジュールするため。\n• アプリ内にチェックイン履歴を表示するため。" },
+      { h: "データの共有", p: "緊急連絡先情報とデバイス識別子は、通知を配信するためにのみサーバーに送信されます。位置情報共有が有効な場合、位置情報は緊急連絡先への通知メッセージに含まれます。\n\n広告主、分析プロバイダー、またはサービス提供に必要な範囲を超えた第三者に対して、お客様のデータを販売、賃貸、または共有することはありません。" },
+      { h: "データの保存とセキュリティ", p: "• 連絡先情報は iOS Keychain（expo-secure-store）を使用してデバイス上に暗号化して保存されます。\n• サーバーは通知送信に必要な最小限のデータのみを保持します。\n• パスワードや認証情報は保存されません。" },
+      { h: "お客様の権利", p: "• 「設定 → すべてのデータをリセット」からいつでも全データを削除できます。\n• 設定からいつでも位置情報共有を無効にできます。\n• いつでも緊急連絡先を削除できます。\n• このアプリの使用にアカウント登録は不要です。" },
+      { h: "子どものプライバシー", p: "UOKnow は 13 歳未満の児童を対象としていません。意図的に児童からデータを収集することはありません。" },
+      { h: "ポリシーの変更", p: "このポリシーは随時更新される場合があります。最新版は常にこの URL およびアプリ内でご確認いただけます。" },
+      { h: "お問い合わせ", p: "プライバシーに関するご質問やデータリクエストは、App Store のリスティングページよりお問い合わせください。" }
+    ]
+  },
+  ko: {
+    title: "UOKnow — 지금 괜찮으세요?",
+    subtitle: "최종 업데이트: 2026년 5월",
+    dir: "ltr",
+    s: [
+      { h: "개요", p: "UOKnow(\"지금 괜찮으세요?\")는 개인 안전 체크인 앱입니다. 설정한 시간 내에 체크인하지 않으면 지정한 비상 연락처에 알림이 전송됩니다. 이 정책은 수집하는 데이터, 사용 방법 및 귀하의 권리를 설명합니다." },
+      { h: "수집하는 데이터", p: "• 비상 연락처 정보 – 등록한 이름, 이메일 주소, 전화번호. iOS Keychain을 통해 기기에 암호화되어 저장됩니다.\n• 체크인 타임스탬프 – 각 체크인의 날짜와 시간.\n• 위치 정보(선택 사항) – 위치 공유를 활성화하면 체크인 시 GPS 좌표가 연락처에 전송되는 알림에 포함됩니다. 위치 정보는 백그라운드에서 수집되지 않습니다.\n• 기기 식별자 – 기기에서 로컬로 생성된 무작위 ID로, 이름이나 개인 정보와 연결되지 않습니다." },
+      { h: "데이터 이용 목적", p: "• 체크인 누락 시 비상 연락처에 알림을 전송하기 위해.\n• 기기에 일일 리마인더 푸시 알림을 예약하기 위해.\n• 앱 내에 체크인 기록을 표시하기 위해." },
+      { h: "데이터 공유", p: "비상 연락처 정보와 기기 식별자는 알림 전송을 위해서만 서버로 전송됩니다. 위치 공유가 활성화된 경우 위치 정보는 연락처에 전송되는 알림 메시지에 포함됩니다.\n\n광고주, 분석 서비스 제공업체 또는 서비스 제공에 필요한 범위를 벗어난 제3자에게 귀하의 데이터를 판매, 임대 또는 공유하지 않습니다." },
+      { h: "데이터 저장 및 보안", p: "• 연락처 정보는 iOS Keychain(expo-secure-store)을 사용하여 기기에 암호화되어 저장됩니다.\n• 서버는 알림 전송에 필요한 최소한의 데이터만 보유합니다.\n• 비밀번호나 인증 자격 증명은 저장되지 않습니다." },
+      { h: "귀하의 권리", p: "• 언제든지 설정 → 모든 데이터 초기화를 통해 모든 앱 데이터를 삭제할 수 있습니다.\n• 언제든지 설정에서 위치 공유를 비활성화할 수 있습니다.\n• 언제든지 비상 연락처를 삭제할 수 있습니다.\n• 이 앱을 사용하기 위해 계정 등록이 필요하지 않습니다." },
+      { h: "아동 개인정보 보호", p: "UOKnow는 13세 미만 어린이를 대상으로 하지 않습니다. 어린이로부터 데이터를 고의로 수집하지 않습니다." },
+      { h: "정책 변경", p: "이 정책은 수시로 업데이트될 수 있습니다. 최신 버전은 항상 이 URL 및 앱 내에서 확인할 수 있습니다." },
+      { h: "문의", p: "개인정보 관련 문의나 데이터 요청은 App Store 목록 페이지를 통해 문의해 주세요." }
+    ]
+  },
+  es: {
+    title: "UOKnow — ¿Estás bien ahora?",
+    subtitle: "Última actualización: mayo de 2026",
+    dir: "ltr",
+    s: [
+      { h: "Descripción general", p: "UOKnow (\"¿Estás bien ahora?\") es una aplicación de registro de seguridad personal. Cuando no realizas tu registro dentro del tiempo establecido, tus contactos de emergencia designados reciben una notificación. Esta política explica qué datos recopilamos, cómo los usamos y tus derechos." },
+      { h: "Datos que recopilamos", p: "• Información de contactos de emergencia: los nombres, direcciones de correo electrónico y números de teléfono que añades. Se almacenan cifrados en tu dispositivo mediante iOS Keychain.\n• Marcas de tiempo de registros: la fecha y hora de cada registro que realizas.\n• Ubicación (opcional): si activas la compartición de ubicación, tus coordenadas GPS en el momento del registro se adjuntan a las alertas enviadas a tus contactos. La ubicación nunca se recopila en segundo plano.\n• Identificador de dispositivo: un ID aleatorio generado localmente en tu dispositivo. No está vinculado a tu nombre ni identidad." },
+      { h: "Cómo usamos tus datos", p: "• Para enviar notificaciones de alerta a tus contactos de emergencia cuando se omite un registro.\n• Para programar notificaciones push de recordatorio diario en tu dispositivo.\n• Para mostrar el historial de registros dentro de la aplicación." },
+      { h: "Compartición de datos", p: "Los detalles de tus contactos de emergencia y el identificador del dispositivo se transmiten a nuestro servidor únicamente para habilitar la entrega de alertas. Tu ubicación (si está activada) se incluye en el mensaje de alerta enviado a tus contactos.\n\nNo vendemos, alquilamos ni compartimos tus datos con anunciantes, proveedores de análisis ni terceros más allá de lo necesario para prestar el servicio." },
+      { h: "Almacenamiento y seguridad", p: "• La información de contactos está cifrada en tu dispositivo mediante iOS Keychain (expo-secure-store).\n• Nuestro servidor retiene solo los datos mínimos necesarios para enviar notificaciones.\n• No se almacenan contraseñas ni credenciales de autenticación." },
+      { h: "Tus derechos", p: "• Elimina todos los datos de la aplicación en cualquier momento mediante Configuración → Restablecer todos los datos.\n• Desactiva la compartición de ubicación en cualquier momento en Configuración.\n• Elimina contactos de emergencia en cualquier momento.\n• No se requiere cuenta ni registro para usar esta aplicación." },
+      { h: "Privacidad de menores", p: "UOKnow no está dirigido a menores de 13 años. No recopilamos datos de menores de manera consciente." },
+      { h: "Cambios en esta política", p: "Podemos actualizar esta política de vez en cuando. La versión más reciente siempre está disponible en esta URL y dentro de la aplicación." },
+      { h: "Contacto", p: "Para cualquier pregunta relacionada con la privacidad o solicitudes de datos, contáctanos a través del listado de la App Store." }
+    ]
+  },
+  fr: {
+    title: "UOKnow — Ça va maintenant ?",
+    subtitle: "Dernière mise à jour : mai 2026",
+    dir: "ltr",
+    s: [
+      { h: "Présentation", p: "UOKnow (« Ça va maintenant ? ») est une application de check-in de sécurité personnelle. Lorsque vous manquez une fenêtre de check-in, vos contacts d'urgence désignés sont notifiés. Cette politique explique les données que nous collectons, comment nous les utilisons et vos droits." },
+      { h: "Données collectées", p: "• Informations sur les contacts d'urgence – les noms, adresses e-mail et numéros de téléphone que vous ajoutez. Stockés de manière chiffrée sur votre appareil via iOS Keychain.\n• Horodatages de check-in – la date et l'heure de chaque check-in enregistré.\n• Localisation (facultatif) – si vous activez le partage de localisation, vos coordonnées GPS au moment du check-in sont jointes aux alertes envoyées à vos contacts. La localisation n'est jamais collectée en arrière-plan.\n• Identifiant d'appareil – un identifiant aléatoire généré localement sur votre appareil. Il n'est pas lié à votre nom ou à votre identité." },
+      { h: "Utilisation des données", p: "• Pour envoyer des notifications d'alerte à vos contacts d'urgence lorsqu'un check-in est manqué.\n• Pour planifier des notifications push de rappel quotidien sur votre appareil.\n• Pour afficher votre historique de check-in dans l'application." },
+      { h: "Partage des données", p: "Les coordonnées de vos contacts d'urgence et l'identifiant de votre appareil sont transmis à notre serveur uniquement pour permettre la délivrance des alertes. Votre localisation (si activée) est incluse dans le message d'alerte envoyé à vos contacts.\n\nNous ne vendons, ne louons ni ne partageons vos données avec des annonceurs, des fournisseurs d'analyses ou des tiers au-delà de ce qui est nécessaire pour fournir le service." },
+      { h: "Stockage et sécurité", p: "• Les informations de contact sont chiffrées sur votre appareil à l'aide d'iOS Keychain (expo-secure-store).\n• Notre serveur ne conserve que les données minimales nécessaires à l'envoi des notifications.\n• Aucun mot de passe ni identifiant d'authentification n'est stocké." },
+      { h: "Vos droits", p: "• Supprimez toutes les données de l'application à tout moment via Paramètres → Réinitialiser toutes les données.\n• Désactivez le partage de localisation à tout moment dans Paramètres.\n• Supprimez des contacts d'urgence à tout moment.\n• Aucun compte ni inscription n'est requis pour utiliser cette application." },
+      { h: "Confidentialité des enfants", p: "UOKnow n'est pas destiné aux enfants de moins de 13 ans. Nous ne collectons pas sciemment des données auprès d'enfants." },
+      { h: "Modifications de cette politique", p: "Nous pouvons mettre à jour cette politique de temps en temps. La version la plus récente est toujours disponible à cette URL et dans l'application." },
+      { h: "Contact", p: "Pour toute question relative à la confidentialité ou demande de données, veuillez nous contacter via l'annonce App Store." }
+    ]
+  },
+  de: {
+    title: "UOKnow — Geht es dir jetzt gut?",
+    subtitle: "Letzte Aktualisierung: Mai 2026",
+    dir: "ltr",
+    s: [
+      { h: "Übersicht", p: "UOKnow („Geht es dir jetzt gut?") ist eine persönliche Sicherheits-Check-in-App. Wenn du ein Check-in-Fenster verpasst, werden deine benannten Notfallkontakte benachrichtigt. Diese Richtlinie erklärt, welche Daten wir erheben, wie wir sie verwenden und welche Rechte du hast." },
+      { h: "Erhobene Daten", p: "• Notfallkontaktinformationen – die Namen, E-Mail-Adressen und Telefonnummern, die du hinzufügst. Werden verschlüsselt auf deinem Gerät über iOS Keychain gespeichert.\n• Check-in-Zeitstempel – Datum und Uhrzeit jedes Check-ins.\n• Standort (optional) – wenn du die Standortfreigabe aktivierst, werden deine GPS-Koordinaten beim Check-in den Benachrichtigungen an deine Kontakte beigefügt. Der Standort wird nie im Hintergrund erfasst.\n• Gerätekennung – eine zufällig auf deinem Gerät lokal generierte ID. Sie ist nicht mit deinem Namen oder deiner Identität verknüpft." },
+      { h: "Verwendung deiner Daten", p: "• Um Alarmbenachrichtigungen an deine Notfallkontakte zu senden, wenn ein Check-in ausbleibt.\n• Um tägliche Erinnerungs-Push-Benachrichtigungen auf deinem Gerät zu planen.\n• Um deinen Check-in-Verlauf in der App anzuzeigen." },
+      { h: "Datenweitergabe", p: "Deine Notfallkontaktdaten und die Gerätekennung werden ausschließlich zur Ermöglichung der Alarmzustellung an unseren Server übertragen. Dein Standort (sofern aktiviert) wird in die Alarmmeldung aufgenommen, die an deine Kontakte gesendet wird.\n\nWir verkaufen, vermieten oder teilen deine Daten nicht mit Werbetreibenden, Analyseanbietern oder Dritten, soweit dies nicht zur Erbringung des Dienstes erforderlich ist." },
+      { h: "Datenspeicherung & Sicherheit", p: "• Kontaktinformationen werden auf deinem Gerät mit iOS Keychain (expo-secure-store) verschlüsselt gespeichert.\n• Unser Server speichert nur die für die Zustellung von Benachrichtigungen minimal erforderlichen Daten.\n• Es werden keine Passwörter oder Authentifizierungsnachweise gespeichert." },
+      { h: "Deine Rechte", p: "• Lösche alle App-Daten jederzeit über Einstellungen → Alle Daten zurücksetzen.\n• Deaktiviere die Standortfreigabe jederzeit in den Einstellungen.\n• Entferne Notfallkontakte jederzeit.\n• Für die Nutzung dieser App ist kein Konto oder keine Registrierung erforderlich." },
+      { h: "Datenschutz für Kinder", p: "UOKnow richtet sich nicht an Kinder unter 13 Jahren. Wir erheben wissentlich keine Daten von Kindern." },
+      { h: "Änderungen dieser Richtlinie", p: "Wir können diese Richtlinie von Zeit zu Zeit aktualisieren. Die neueste Version ist immer unter dieser URL und in der App verfügbar." },
+      { h: "Kontakt", p: "Für datenschutzbezogene Fragen oder Datenanfragen wende dich bitte über das App Store-Listing an uns." }
+    ]
+  },
+  pt: {
+    title: "UOKnow — Você está bem agora?",
+    subtitle: "Última atualização: maio de 2026",
+    dir: "ltr",
+    s: [
+      { h: "Visão geral", p: "UOKnow (\"Você está bem agora?\") é um aplicativo de check-in de segurança pessoal. Quando você perde uma janela de check-in, seus contatos de emergência designados são notificados. Esta política explica quais dados coletamos, como os usamos e seus direitos." },
+      { h: "Dados que coletamos", p: "• Informações de contatos de emergência – os nomes, endereços de e-mail e números de telefone que você adiciona. Armazenados de forma criptografada no seu dispositivo via iOS Keychain.\n• Registros de data e hora de check-in – a data e hora de cada check-in que você realiza.\n• Localização (opcional) – se você ativar o compartilhamento de localização, suas coordenadas GPS no momento do check-in são anexadas aos alertas enviados aos seus contatos. A localização nunca é coletada em segundo plano.\n• Identificador do dispositivo – um ID aleatório gerado localmente no seu dispositivo. Não está vinculado ao seu nome ou identidade." },
+      { h: "Como usamos seus dados", p: "• Para enviar notificações de alerta aos seus contatos de emergência quando um check-in é perdido.\n• Para agendar notificações push de lembrete diário no seu dispositivo.\n• Para exibir seu histórico de check-in no aplicativo." },
+      { h: "Compartilhamento de dados", p: "Os detalhes dos seus contatos de emergência e o identificador do dispositivo são transmitidos ao nosso servidor exclusivamente para permitir a entrega de alertas. Sua localização (se ativada) é incluída na mensagem de alerta enviada aos seus contatos.\n\nNão vendemos, alugamos nem compartilhamos seus dados com anunciantes, provedores de análise ou quaisquer terceiros além do necessário para fornecer o serviço." },
+      { h: "Armazenamento e segurança", p: "• As informações de contato são criptografadas no seu dispositivo usando iOS Keychain (expo-secure-store).\n• Nosso servidor retém apenas os dados mínimos necessários para entregar notificações.\n• Nenhuma senha ou credencial de autenticação é armazenada." },
+      { h: "Seus direitos", p: "• Exclua todos os dados do aplicativo a qualquer momento via Configurações → Redefinir todos os dados.\n• Desative o compartilhamento de localização a qualquer momento nas Configurações.\n• Remova contatos de emergência a qualquer momento.\n• Nenhuma conta ou registro é necessário para usar este aplicativo." },
+      { h: "Privacidade de crianças", p: "UOKnow não é destinado a crianças menores de 13 anos. Não coletamos conscientemente dados de crianças." },
+      { h: "Alterações nesta política", p: "Podemos atualizar esta política periodicamente. A versão mais recente está sempre disponível nesta URL e no aplicativo." },
+      { h: "Contato", p: "Para quaisquer dúvidas relacionadas à privacidade ou solicitações de dados, entre em contato conosco através da listagem da App Store." }
+    ]
+  },
+  it: {
+    title: "UOKnow — Stai bene ora?",
+    subtitle: "Ultimo aggiornamento: maggio 2026",
+    dir: "ltr",
+    s: [
+      { h: "Panoramica", p: "UOKnow (\"Stai bene ora?\") è un'app per il check-in di sicurezza personale. Quando si perde una finestra di check-in, i contatti di emergenza designati vengono avvisati. Questa policy spiega quali dati raccogliamo, come li utilizziamo e i tuoi diritti." },
+      { h: "Dati che raccogliamo", p: "• Informazioni sui contatti di emergenza – nomi, indirizzi e-mail e numeri di telefono che aggiungi. Vengono archiviati in modo crittografato sul tuo dispositivo tramite iOS Keychain.\n• Timestamp di check-in – data e ora di ogni check-in registrato.\n• Posizione (facoltativa) – se attivi la condivisione della posizione, le tue coordinate GPS al momento del check-in vengono allegate agli avvisi inviati ai tuoi contatti. La posizione non viene mai raccolta in background.\n• Identificatore dispositivo – un ID casuale generato localmente sul tuo dispositivo. Non è collegato al tuo nome o identità." },
+      { h: "Come utilizziamo i tuoi dati", p: "• Per inviare notifiche di avviso ai tuoi contatti di emergenza quando un check-in viene mancato.\n• Per pianificare notifiche push di promemoria giornaliero sul tuo dispositivo.\n• Per visualizzare la cronologia dei check-in nell'app." },
+      { h: "Condivisione dei dati", p: "I dettagli dei contatti di emergenza e l'identificatore del dispositivo vengono trasmessi al nostro server esclusivamente per abilitare la consegna degli avvisi. La tua posizione (se abilitata) è inclusa nel messaggio di avviso inviato ai tuoi contatti.\n\nNon vendiamo, affittiamo né condividiamo i tuoi dati con inserzionisti, fornitori di analisi o terze parti al di là di quanto necessario per fornire il servizio." },
+      { h: "Archiviazione e sicurezza", p: "• Le informazioni di contatto sono crittografate sul tuo dispositivo tramite iOS Keychain (expo-secure-store).\n• Il nostro server conserva solo i dati minimi necessari per la consegna delle notifiche.\n• Non vengono archiviati password o credenziali di autenticazione." },
+      { h: "I tuoi diritti", p: "• Elimina tutti i dati dell'app in qualsiasi momento tramite Impostazioni → Reimposta tutti i dati.\n• Disabilita la condivisione della posizione in qualsiasi momento nelle Impostazioni.\n• Rimuovi i contatti di emergenza in qualsiasi momento.\n• Non è richiesto alcun account o registrazione per utilizzare questa app." },
+      { h: "Privacy dei minori", p: "UOKnow non è destinato a bambini di età inferiore a 13 anni. Non raccogliamo consapevolmente dati da bambini." },
+      { h: "Modifiche a questa policy", p: "Potremmo aggiornare questa policy di tanto in tanto. La versione più recente è sempre disponibile a questo URL e all'interno dell'app." },
+      { h: "Contatto", p: "Per qualsiasi domanda relativa alla privacy o richiesta di dati, contattaci tramite il listato dell'App Store." }
+    ]
+  },
+  ru: {
+    title: "UOKnow — Сейчас всё хорошо?",
+    subtitle: "Последнее обновление: май 2026 г.",
+    dir: "ltr",
+    s: [
+      { h: "Обзор", p: "UOKnow («Сейчас всё хорошо?») — приложение для личной проверки безопасности. Если вы пропустили окно для отметки, ваши назначенные экстренные контакты получат уведомление. Эта политика объясняет, какие данные мы собираем, как их используем и каковы ваши права." },
+      { h: "Собираемые данные", p: "• Информация об экстренных контактах — имена, адреса электронной почты и номера телефонов, которые вы добавляете. Хранятся в зашифрованном виде на устройстве через iOS Keychain.\n• Временны́е метки отметок — дата и время каждой выполненной отметки.\n• Местоположение (необязательно) — если вы включили общий доступ к местоположению, ваши GPS-координаты в момент отметки прикрепляются к уведомлениям, отправляемым контактам. Местоположение никогда не собирается в фоновом режиме.\n• Идентификатор устройства — случайный идентификатор, сгенерированный локально на вашем устройстве. Он не связан с вашим именем или личностью." },
+      { h: "Использование данных", p: "• Для отправки уведомлений-предупреждений вашим экстренным контактам при пропуске отметки.\n• Для планирования ежедневных напоминаний в виде push-уведомлений на вашем устройстве.\n• Для отображения истории отметок в приложении." },
+      { h: "Передача данных", p: "Данные ваших экстренных контактов и идентификатор устройства передаются на наш сервер исключительно для обеспечения доставки уведомлений. Ваше местоположение (если включено) включается в сообщение-предупреждение, отправляемое вашим контактам.\n\nМы не продаём, не сдаём в аренду и не передаём ваши данные рекламодателям, аналитическим провайдерам или третьим лицам сверх того, что необходимо для предоставления услуги." },
+      { h: "Хранение данных и безопасность", p: "• Информация о контактах зашифрована на вашем устройстве с помощью iOS Keychain (expo-secure-store).\n• Наш сервер хранит только минимально необходимые для доставки уведомлений данные.\n• Пароли и учётные данные для аутентификации не хранятся." },
+      { h: "Ваши права", p: "• Удалите все данные приложения в любое время через «Настройки → Сбросить все данные».\n• Отключите общий доступ к местоположению в любое время в «Настройках».\n• Удалите экстренные контакты в любое время.\n• Для использования приложения не требуется учётная запись или регистрация." },
+      { h: "Конфиденциальность детей", p: "UOKnow не предназначено для детей до 13 лет. Мы сознательно не собираем данные детей." },
+      { h: "Изменения в политике", p: "Мы можем периодически обновлять эту политику. Последняя версия всегда доступна по этому URL-адресу и в приложении." },
+      { h: "Контакт", p: "По любым вопросам конфиденциальности или запросам данных свяжитесь с нами через листинг в App Store." }
+    ]
+  },
+  ar: {
+    title: "UOKnow — هل أنت بخير الآن؟",
+    subtitle: "آخر تحديث: مايو 2026",
+    dir: "rtl",
+    s: [
+      { h: "نظرة عامة", p: "UOKnow (\"هل أنت بخير الآن؟\") تطبيق للتحقق من السلامة الشخصية. عند فوات نافذة تسجيل الحضور، يتلقى جهات الاتصال الطارئة المعيّنة إشعاراً. توضح هذه السياسة البيانات التي نجمعها وكيفية استخدامها وحقوقك." },
+      { h: "البيانات التي نجمعها", p: "• معلومات جهات الاتصال الطارئة – الأسماء وعناوين البريد الإلكتروني وأرقام الهاتف التي تضيفها. يتم تخزينها مشفّرةً على جهازك عبر iOS Keychain.\n• طوابع وقت تسجيل الحضور – تاريخ ووقت كل تسجيل حضور تُجريه.\n• الموقع الجغرافي (اختياري) – إذا فعّلت مشاركة الموقع، فسيتم إرفاق إحداثيات GPS وقت تسجيل الحضور بالتنبيهات المرسلة لجهات اتصالك. لا يُجمع الموقع مطلقاً في الخلفية.\n• معرّف الجهاز – معرّف عشوائي يتم توليده محلياً على جهازك، ولا يرتبط باسمك أو هويتك." },
+      { h: "كيف نستخدم بياناتك", p: "• لإرسال إشعارات تنبيه إلى جهات اتصالك الطارئة عند تفويت تسجيل الحضور.\n• لجدولة إشعارات دفع تذكيرية يومية على جهازك.\n• لعرض سجل تسجيلات الحضور داخل التطبيق." },
+      { h: "مشاركة البيانات", p: "يتم نقل بيانات جهات اتصالك الطارئة ومعرّف جهازك إلى خادمنا فقط لتمكين تسليم التنبيهات. يتم تضمين موقعك الجغرافي (إن كان مفعّلاً) في رسالة التنبيه المرسلة إلى جهات اتصالك.\n\nلا نبيع بياناتك أو نؤجّرها أو نشاركها مع المعلنين أو مزوّدي التحليلات أو أي أطراف ثالثة خارج ما هو ضروري لتقديم الخدمة." },
+      { h: "تخزين البيانات والأمان", p: "• يتم تشفير معلومات الاتصال على جهازك باستخدام iOS Keychain (expo-secure-store).\n• يحتفظ خادمنا فقط بالحد الأدنى من البيانات اللازمة لتسليم الإشعارات.\n• لا يتم تخزين أي كلمات مرور أو بيانات اعتماد للمصادقة." },
+      { h: "حقوقك", p: "• احذف جميع بيانات التطبيق في أي وقت عبر الإعدادات ← إعادة تعيين جميع البيانات.\n• عطّل مشاركة الموقع في أي وقت من الإعدادات.\n• أزل جهات الاتصال الطارئة في أي وقت.\n• لا يلزم وجود حساب أو تسجيل لاستخدام هذا التطبيق." },
+      { h: "خصوصية الأطفال", p: "لا يستهدف UOKnow الأطفال دون سن 13. لا نجمع بيانات الأطفال عن قصد." },
+      { h: "التغييرات على هذه السياسة", p: "قد نحدّث هذه السياسة من وقت لآخر. تتوفر أحدث نسخة دائماً على هذا الرابط وداخل التطبيق." },
+      { h: "التواصل", p: "لأي استفسارات تتعلق بالخصوصية أو طلبات البيانات، يرجى التواصل معنا عبر قائمة App Store." }
+    ]
+  },
+  hi: {
+    title: "UOKnow — क्या आप अभी ठीक हैं?",
+    subtitle: "अंतिम अपडेट: मई 2026",
+    dir: "ltr",
+    s: [
+      { h: "अवलोकन", p: "UOKnow (\"क्या आप अभी ठीक हैं?\") एक व्यक्तिगत सुरक्षा चेक-इन ऐप है। जब आप निर्धारित समय सीमा में चेक-इन नहीं करते, तो आपके नामांकित आपातकालीन संपर्कों को सूचित किया जाता है। यह नीति बताती है कि हम कौन सा डेटा एकत्र करते हैं, उसका उपयोग कैसे करते हैं और आपके अधिकार क्या हैं।" },
+      { h: "हम जो डेटा एकत्र करते हैं", p: "• आपातकालीन संपर्क जानकारी – आपके द्वारा जोड़े गए नाम, ईमेल पते और फ़ोन नंबर। iOS Keychain के माध्यम से आपके डिवाइस पर एन्क्रिप्टेड रूप में संग्रहीत।\n• चेक-इन टाइमस्टैम्प – आपके द्वारा दर्ज किए गए प्रत्येक चेक-इन की तारीख और समय।\n• स्थान (वैकल्पिक) – यदि आप स्थान साझाकरण सक्षम करते हैं, तो चेक-इन के समय आपके GPS निर्देशांक आपके संपर्कों को भेजे गए अलर्ट से संलग्न होते हैं। स्थान कभी भी पृष्ठभूमि में एकत्र नहीं किया जाता।\n• डिवाइस पहचानकर्ता – आपके डिवाइस पर स्थानीय रूप से उत्पन्न एक यादृच्छिक ID। यह आपके नाम या पहचान से जुड़ा नहीं है।" },
+      { h: "हम आपके डेटा का उपयोग कैसे करते हैं", p: "• चेक-इन छूट जाने पर आपके आपातकालीन संपर्कों को अलर्ट अधिसूचना भेजने के लिए।\n• आपके डिवाइस पर दैनिक रिमाइंडर पुश नोटिफिकेशन शेड्यूल करने के लिए।\n• ऐप के भीतर आपके चेक-इन इतिहास को प्रदर्शित करने के लिए।" },
+      { h: "डेटा साझाकरण", p: "आपके आपातकालीन संपर्क विवरण और डिवाइस पहचानकर्ता केवल अलर्ट डिलीवरी सक्षम करने के लिए हमारे सर्वर पर प्रेषित किए जाते हैं। आपका स्थान (यदि सक्षम है) आपके संपर्कों को भेजे गए अलर्ट संदेश में शामिल होता है।\n\nहम आपका डेटा विज्ञापनदाताओं, विश्लेषण प्रदाताओं या किसी भी तृतीय पक्ष को सेवा प्रदान करने के लिए आवश्यक से परे नहीं बेचते, किराए पर देते या साझा करते हैं।" },
+      { h: "डेटा संग्रहण और सुरक्षा", p: "• संपर्क जानकारी iOS Keychain (expo-secure-store) का उपयोग करके आपके डिवाइस पर एन्क्रिप्ट की गई है।\n• हमारा सर्वर केवल अधिसूचनाएं देने के लिए न्यूनतम आवश्यक डेटा रखता है।\n• कोई पासवर्ड या प्रमाणीकरण क्रेडेंशियल संग्रहीत नहीं किए जाते।" },
+      { h: "आपके अधिकार", p: "• कभी भी सेटिंग्स → सभी डेटा रीसेट करें के माध्यम से सभी ऐप डेटा हटाएं।\n• कभी भी सेटिंग्स में स्थान साझाकरण अक्षम करें।\n• कभी भी आपातकालीन संपर्क हटाएं।\n• इस ऐप का उपयोग करने के लिए कोई खाता या पंजीकरण आवश्यक नहीं है।" },
+      { h: "बच्चों की गोपनीयता", p: "UOKnow 13 वर्ष से कम आयु के बच्चों के लिए नहीं है। हम जानबूझकर बच्चों से डेटा एकत्र नहीं करते।" },
+      { h: "इस नीति में बदलाव", p: "हम समय-समय पर इस नीति को अपडेट कर सकते हैं। नवीनतम संस्करण हमेशा इस URL और ऐप के भीतर उपलब्ध है।" },
+      { h: "संपर्क", p: "किसी भी गोपनीयता संबंधित प्रश्नों या डेटा अनुरोधों के लिए, कृपया App Store लिस्टिंग के माध्यम से हमसे संपर्क करें।" }
+    ]
+  },
+  th: {
+    title: "UOKnow — คุณสบายดีไหมตอนนี้?",
+    subtitle: "อัปเดตล่าสุด: พฤษภาคม 2026",
+    dir: "ltr",
+    s: [
+      { h: "ภาพรวม", p: "UOKnow (\"คุณสบายดีไหมตอนนี้?\") เป็นแอปเช็คอินความปลอดภัยส่วนบุคคล เมื่อคุณไม่ได้เช็คอินภายในช่วงเวลาที่กำหนด ผู้ติดต่อฉุกเฉินที่คุณระบุจะได้รับการแจ้งเตือน นโยบายนี้อธิบายข้อมูลที่เราเก็บรวบรวม วิธีการใช้งาน และสิทธิ์ของคุณ" },
+      { h: "ข้อมูลที่เราเก็บรวบรวม", p: "• ข้อมูลผู้ติดต่อฉุกเฉิน – ชื่อ ที่อยู่อีเมล และหมายเลขโทรศัพท์ที่คุณเพิ่ม จัดเก็บแบบเข้ารหัสบนอุปกรณ์ของคุณผ่าน iOS Keychain\n• การประทับเวลาเช็คอิน – วันที่และเวลาของการเช็คอินแต่ละครั้งที่คุณบันทึก\n• ตำแหน่ง (ไม่บังคับ) – หากคุณเปิดใช้งานการแชร์ตำแหน่ง พิกัด GPS ณ เวลาเช็คอินจะถูกแนบไปกับการแจ้งเตือนที่ส่งถึงผู้ติดต่อของคุณ ตำแหน่งจะไม่ถูกเก็บรวบรวมในพื้นหลังเด็ดขาด\n• ตัวระบุอุปกรณ์ – รหัสสุ่มที่สร้างในเครื่องบนอุปกรณ์ของคุณ ไม่เชื่อมโยงกับชื่อหรือตัวตนของคุณ" },
+      { h: "วิธีที่เราใช้ข้อมูลของคุณ", p: "• เพื่อส่งการแจ้งเตือนเตือนภัยไปยังผู้ติดต่อฉุกเฉินของคุณเมื่อพลาดการเช็คอิน\n• เพื่อกำหนดเวลาการแจ้งเตือนพุชเตือนความจำรายวันบนอุปกรณ์ของคุณ\n• เพื่อแสดงประวัติการเช็คอินของคุณภายในแอป" },
+      { h: "การแชร์ข้อมูล", p: "รายละเอียดผู้ติดต่อฉุกเฉินและตัวระบุอุปกรณ์ของคุณจะถูกส่งไปยังเซิร์ฟเวอร์ของเราเฉพาะเพื่อให้การส่งการแจ้งเตือนทำงานได้ ตำแหน่งของคุณ (หากเปิดใช้งาน) จะรวมอยู่ในข้อความแจ้งเตือนที่ส่งถึงผู้ติดต่อของคุณ\n\nเราไม่ขาย ให้เช่า หรือแบ่งปันข้อมูลของคุณกับผู้ลงโฆษณา ผู้ให้บริการวิเคราะห์ หรือบุคคลที่สามใด ๆ เกินกว่าที่จำเป็นสำหรับการให้บริการ" },
+      { h: "การจัดเก็บข้อมูลและความปลอดภัย", p: "• ข้อมูลผู้ติดต่อถูกเข้ารหัสบนอุปกรณ์ของคุณโดยใช้ iOS Keychain (expo-secure-store)\n• เซิร์ฟเวอร์ของเราเก็บเฉพาะข้อมูลขั้นต่ำที่จำเป็นสำหรับการส่งการแจ้งเตือนเท่านั้น\n• ไม่มีการจัดเก็บรหัสผ่านหรือข้อมูลประจำตัวสำหรับการตรวจสอบสิทธิ์" },
+      { h: "สิทธิ์ของคุณ", p: "• ลบข้อมูลแอปทั้งหมดได้ตลอดเวลาผ่าน การตั้งค่า → รีเซ็ตข้อมูลทั้งหมด\n• ปิดใช้งานการแชร์ตำแหน่งได้ตลอดเวลาในการตั้งค่า\n• ลบผู้ติดต่อฉุกเฉินได้ตลอดเวลา\n• ไม่จำเป็นต้องมีบัญชีหรือการลงทะเบียนเพื่อใช้แอปนี้" },
+      { h: "ความเป็นส่วนตัวของเด็ก", p: "UOKnow ไม่ได้มุ่งเป้าไปที่เด็กอายุต่ำกว่า 13 ปี เราไม่เก็บรวบรวมข้อมูลจากเด็กโดยเจตนา" },
+      { h: "การเปลี่ยนแปลงนโยบายนี้", p: "เราอาจอัปเดตนโยบายนี้เป็นครั้งคราว เวอร์ชันล่าสุดมีอยู่เสมอที่ URL นี้และภายในแอป" },
+      { h: "ติดต่อ", p: "สำหรับคำถามที่เกี่ยวข้องกับความเป็นส่วนตัวหรือคำขอข้อมูล โปรดติดต่อเราผ่านรายชื่อ App Store" }
+    ]
+  },
+  vi: {
+    title: "UOKnow — Bạn có ổn không bây giờ?",
+    subtitle: "Cập nhật lần cuối: Tháng 5 năm 2026",
+    dir: "ltr",
+    s: [
+      { h: "Tổng quan", p: "UOKnow (\"Bạn có ổn không bây giờ?\") là ứng dụng check-in an toàn cá nhân. Khi bạn bỏ lỡ cửa sổ check-in, các liên hệ khẩn cấp được chỉ định của bạn sẽ được thông báo. Chính sách này giải thích dữ liệu chúng tôi thu thập, cách chúng tôi sử dụng và quyền của bạn." },
+      { h: "Dữ liệu chúng tôi thu thập", p: "• Thông tin liên hệ khẩn cấp – tên, địa chỉ email và số điện thoại bạn thêm vào. Được lưu trữ mã hóa trên thiết bị của bạn qua iOS Keychain.\n• Dấu thời gian check-in – ngày và giờ của mỗi lần check-in bạn ghi lại.\n• Vị trí (tùy chọn) – nếu bạn bật chia sẻ vị trí, tọa độ GPS của bạn vào thời điểm check-in sẽ được đính kèm vào cảnh báo gửi cho các liên hệ. Vị trí không bao giờ được thu thập trong nền.\n• Mã nhận dạng thiết bị – ID ngẫu nhiên được tạo cục bộ trên thiết bị của bạn. Nó không được liên kết với tên hoặc danh tính của bạn." },
+      { h: "Cách chúng tôi sử dụng dữ liệu của bạn", p: "• Để gửi thông báo cảnh báo đến các liên hệ khẩn cấp của bạn khi bỏ lỡ check-in.\n• Để lên lịch thông báo đẩy nhắc nhở hàng ngày trên thiết bị của bạn.\n• Để hiển thị lịch sử check-in của bạn trong ứng dụng." },
+      { h: "Chia sẻ dữ liệu", p: "Thông tin liên hệ khẩn cấp và mã nhận dạng thiết bị của bạn được truyền đến máy chủ của chúng tôi chỉ để cho phép gửi cảnh báo. Vị trí của bạn (nếu được bật) được đưa vào tin nhắn cảnh báo gửi đến các liên hệ của bạn.\n\nChúng tôi không bán, cho thuê hoặc chia sẻ dữ liệu của bạn với các nhà quảng cáo, nhà cung cấp dịch vụ phân tích hoặc bất kỳ bên thứ ba nào ngoài những gì cần thiết để cung cấp dịch vụ." },
+      { h: "Lưu trữ dữ liệu & Bảo mật", p: "• Thông tin liên hệ được mã hóa trên thiết bị của bạn bằng iOS Keychain (expo-secure-store).\n• Máy chủ của chúng tôi chỉ lưu giữ dữ liệu tối thiểu cần thiết để gửi thông báo.\n• Không có mật khẩu hoặc thông tin xác thực nào được lưu trữ." },
+      { h: "Quyền của bạn", p: "• Xóa tất cả dữ liệu ứng dụng bất cứ lúc nào qua Cài đặt → Đặt lại tất cả dữ liệu.\n• Tắt chia sẻ vị trí bất cứ lúc nào trong Cài đặt.\n• Xóa liên hệ khẩn cấp bất cứ lúc nào.\n• Không cần tài khoản hay đăng ký để sử dụng ứng dụng này." },
+      { h: "Quyền riêng tư của trẻ em", p: "UOKnow không hướng đến trẻ em dưới 13 tuổi. Chúng tôi không cố ý thu thập dữ liệu từ trẻ em." },
+      { h: "Thay đổi chính sách này", p: "Chúng tôi có thể cập nhật chính sách này theo thời gian. Phiên bản mới nhất luôn có sẵn tại URL này và trong ứng dụng." },
+      { h: "Liên hệ", p: "Đối với bất kỳ câu hỏi liên quan đến quyền riêng tư hoặc yêu cầu dữ liệu, vui lòng liên hệ với chúng tôi qua danh sách App Store." }
+    ]
+  },
+  id: {
+    title: "UOKnow — Apakah kamu baik-baik saja sekarang?",
+    subtitle: "Terakhir diperbarui: Mei 2026",
+    dir: "ltr",
+    s: [
+      { h: "Ikhtisar", p: "UOKnow (\"Apakah kamu baik-baik saja sekarang?\") adalah aplikasi check-in keamanan pribadi. Ketika kamu melewatkan jendela check-in, kontak darurat yang kamu tunjuk akan diberitahu. Kebijakan ini menjelaskan data apa yang kami kumpulkan, cara kami menggunakannya, dan hak-hakmu." },
+      { h: "Data yang Kami Kumpulkan", p: "• Informasi kontak darurat – nama, alamat email, dan nomor telepon yang kamu tambahkan. Disimpan terenkripsi di perangkatmu melalui iOS Keychain.\n• Stempel waktu check-in – tanggal dan waktu setiap check-in yang kamu catat.\n• Lokasi (opsional) – jika kamu mengaktifkan berbagi lokasi, koordinat GPS-mu saat check-in akan dilampirkan ke peringatan yang dikirim ke kontakmu. Lokasi tidak pernah dikumpulkan di latar belakang.\n• Pengenal perangkat – ID acak yang dibuat secara lokal di perangkatmu. Tidak terhubung dengan nama atau identitasmu." },
+      { h: "Cara Kami Menggunakan Datamu", p: "• Untuk mengirim notifikasi peringatan ke kontak daruratmu saat check-in terlewat.\n• Untuk menjadwalkan notifikasi push pengingat harian di perangkatmu.\n• Untuk menampilkan riwayat check-in di dalam aplikasi." },
+      { h: "Berbagi Data", p: "Detail kontak darurat dan pengenal perangkatmu dikirimkan ke server kami hanya untuk memungkinkan pengiriman peringatan. Lokasimu (jika diaktifkan) disertakan dalam pesan peringatan yang dikirim ke kontakmu.\n\nKami tidak menjual, menyewakan, atau berbagi datamu dengan pengiklan, penyedia analitik, atau pihak ketiga mana pun di luar yang diperlukan untuk memberikan layanan." },
+      { h: "Penyimpanan & Keamanan Data", p: "• Informasi kontak dienkripsi di perangkatmu menggunakan iOS Keychain (expo-secure-store).\n• Server kami hanya menyimpan data minimum yang diperlukan untuk mengirimkan notifikasi.\n• Tidak ada kata sandi atau kredensial autentikasi yang disimpan." },
+      { h: "Hak-hakmu", p: "• Hapus semua data aplikasi kapan saja melalui Pengaturan → Reset Semua Data.\n• Nonaktifkan berbagi lokasi kapan saja di Pengaturan.\n• Hapus kontak darurat kapan saja.\n• Tidak diperlukan akun atau registrasi untuk menggunakan aplikasi ini." },
+      { h: "Privasi Anak-anak", p: "UOKnow tidak ditujukan untuk anak-anak di bawah 13 tahun. Kami tidak secara sengaja mengumpulkan data dari anak-anak." },
+      { h: "Perubahan Kebijakan Ini", p: "Kami mungkin memperbarui kebijakan ini dari waktu ke waktu. Versi terbaru selalu tersedia di URL ini dan di dalam aplikasi." },
+      { h: "Kontak", p: "Untuk pertanyaan terkait privasi atau permintaan data, silakan hubungi kami melalui daftar App Store." }
+    ]
+  },
+  ms: {
+    title: "UOKnow — Adakah anda baik-baik saja sekarang?",
+    subtitle: "Kemaskini terakhir: Mei 2026",
+    dir: "ltr",
+    s: [
+      { h: "Gambaran Keseluruhan", p: "UOKnow (\"Adakah anda baik-baik saja sekarang?\") ialah aplikasi daftar masuk keselamatan peribadi. Apabila anda terlepas tetingkap daftar masuk, kenalan kecemasan yang anda namakan akan dimaklumkan. Polisi ini menerangkan data yang kami kumpulkan, cara kami menggunakannya, dan hak-hak anda." },
+      { h: "Data yang Kami Kumpulkan", p: "• Maklumat kenalan kecemasan – nama, alamat e-mel, dan nombor telefon yang anda tambah. Disimpan secara disulitkan pada peranti anda melalui iOS Keychain.\n• Cap masa daftar masuk – tarikh dan masa setiap daftar masuk yang anda rekodkan.\n• Lokasi (pilihan) – jika anda mendayakan perkongsian lokasi, koordinat GPS anda pada masa daftar masuk dilampirkan pada amaran yang dihantar kepada kenalan anda. Lokasi tidak pernah dikumpulkan di latar belakang.\n• Pengecam peranti – ID rawak yang dijana secara tempatan pada peranti anda. Ia tidak dikaitkan dengan nama atau identiti anda." },
+      { h: "Cara Kami Menggunakan Data Anda", p: "• Untuk menghantar pemberitahuan amaran kepada kenalan kecemasan anda apabila daftar masuk terlepas.\n• Untuk menjadualkan pemberitahuan tolak peringatan harian pada peranti anda.\n• Untuk memaparkan sejarah daftar masuk anda dalam aplikasi." },
+      { h: "Perkongsian Data", p: "Butiran kenalan kecemasan dan pengecam peranti anda dihantar ke pelayan kami semata-mata untuk membolehkan penghantaran amaran. Lokasi anda (jika didayakan) disertakan dalam mesej amaran yang dihantar kepada kenalan anda.\n\nKami tidak menjual, menyewa atau berkongsi data anda dengan pengiklan, pembekal analitik, atau mana-mana pihak ketiga melebihi apa yang diperlukan untuk menyampaikan perkhidmatan." },
+      { h: "Penyimpanan & Keselamatan Data", p: "• Maklumat kenalan disulitkan pada peranti anda menggunakan iOS Keychain (expo-secure-store).\n• Pelayan kami hanya menyimpan data minimum yang diperlukan untuk menghantar pemberitahuan.\n• Tiada kata laluan atau bukti kelayakan pengesahan yang disimpan." },
+      { h: "Hak-hak Anda", p: "• Padamkan semua data aplikasi pada bila-bila masa melalui Tetapan → Tetapkan Semula Semua Data.\n• Nyahdayakan perkongsian lokasi pada bila-bila masa dalam Tetapan.\n• Alih keluar kenalan kecemasan pada bila-bila masa.\n• Tiada akaun atau pendaftaran diperlukan untuk menggunakan aplikasi ini." },
+      { h: "Privasi Kanak-kanak", p: "UOKnow tidak ditujukan kepada kanak-kanak bawah 13 tahun. Kami tidak mengumpulkan data daripada kanak-kanak secara sengaja." },
+      { h: "Perubahan pada Polisi Ini", p: "Kami mungkin mengemas kini polisi ini dari semasa ke semasa. Versi terbaru sentiasa tersedia di URL ini dan dalam aplikasi." },
+      { h: "Hubungi Kami", p: "Untuk sebarang pertanyaan berkaitan privasi atau permintaan data, sila hubungi kami melalui penyenaraian App Store." }
+    ]
+  },
+  nl: {
+    title: "UOKnow — Gaat het nu goed?",
+    subtitle: "Laatste update: mei 2026",
+    dir: "ltr",
+    s: [
+      { h: "Overzicht", p: "UOKnow (\"Gaat het nu goed?\") is een persoonlijke veiligheids-check-in-app. Wanneer je een check-in-venster mist, worden je aangewezen noodcontacten op de hoogte gesteld. Dit beleid legt uit welke gegevens we verzamelen, hoe we ze gebruiken en wat jouw rechten zijn." },
+      { h: "Gegevens die we verzamelen", p: "• Informatie over noodcontacten – de namen, e-mailadressen en telefoonnummers die je toevoegt. Versleuteld opgeslagen op je apparaat via iOS Keychain.\n• Check-in-tijdstempels – de datum en tijd van elke check-in die je registreert.\n• Locatie (optioneel) – als je locatiedeling inschakelt, worden je GPS-coördinaten op het moment van check-in bijgevoegd aan de meldingen die naar je contacten worden gestuurd. Locatie wordt nooit op de achtergrond verzameld.\n• Apparaat-ID – een willekeurig ID dat lokaal op je apparaat wordt gegenereerd. Het is niet gekoppeld aan je naam of identiteit." },
+      { h: "Hoe we je gegevens gebruiken", p: "• Om waarschuwingsmeldingen te sturen naar je noodcontacten wanneer een check-in wordt gemist.\n• Om dagelijkse herinneringspush-meldingen op je apparaat te plannen.\n• Om je check-in-geschiedenis in de app te tonen." },
+      { h: "Gegevens delen", p: "De contactgegevens van je noodcontacten en de apparaat-ID worden uitsluitend verzonden naar onze server om de bezorging van waarschuwingen mogelijk te maken. Je locatie (indien ingeschakeld) is opgenomen in het waarschuwingsbericht dat naar je contacten wordt gestuurd.\n\nWe verkopen, verhuren of delen je gegevens niet met adverteerders, analyseproviders of derden buiten hetgeen noodzakelijk is om de dienst te leveren." },
+      { h: "Gegevensopslag & Beveiliging", p: "• Contactinformatie is versleuteld op je apparaat met iOS Keychain (expo-secure-store).\n• Onze server bewaart alleen de minimaal noodzakelijke gegevens om meldingen te bezorgen.\n• Er worden geen wachtwoorden of authenticatiereferenties opgeslagen." },
+      { h: "Jouw rechten", p: "• Verwijder alle app-gegevens op elk moment via Instellingen → Alle gegevens resetten.\n• Schakel locatiedeling op elk moment uit in Instellingen.\n• Verwijder noodcontacten op elk moment.\n• Er is geen account of registratie vereist om deze app te gebruiken." },
+      { h: "Privacy van kinderen", p: "UOKnow is niet gericht op kinderen onder de 13 jaar. We verzamelen niet bewust gegevens van kinderen." },
+      { h: "Wijzigingen in dit beleid", p: "We kunnen dit beleid van tijd tot tijd bijwerken. De nieuwste versie is altijd beschikbaar op deze URL en in de app." },
+      { h: "Contact", p: "Voor privacygerelateerde vragen of gegevensverzoeken kunt u contact met ons opnemen via de App Store-vermelding." }
+    ]
+  },
+  pl: {
+    title: "UOKnow — Czy teraz wszystko dobrze?",
+    subtitle: "Ostatnia aktualizacja: maj 2026",
+    dir: "ltr",
+    s: [
+      { h: "Przegląd", p: "UOKnow (\"Czy teraz wszystko dobrze?\") to aplikacja do osobistego check-inu bezpieczeństwa. Gdy przegapisz okno check-inu, Twoje wyznaczone kontakty alarmowe zostaną powiadomione. Niniejsza polityka wyjaśnia, jakie dane gromadzimy, jak je wykorzystujemy i jakie masz prawa." },
+      { h: "Zbierane dane", p: "• Informacje o kontaktach alarmowych – imiona i nazwiska, adresy e-mail oraz numery telefonów, które dodajesz. Przechowywane w zaszyfrowanej formie na Twoim urządzeniu za pomocą iOS Keychain.\n• Znaczniki czasu check-inu – data i godzina każdego zarejestrowanego check-inu.\n• Lokalizacja (opcjonalnie) – jeśli włączysz udostępnianie lokalizacji, Twoje współrzędne GPS w momencie check-inu zostaną dołączone do alertów wysłanych do Twoich kontaktów. Lokalizacja nigdy nie jest zbierana w tle.\n• Identyfikator urządzenia – losowy identyfikator generowany lokalnie na Twoim urządzeniu. Nie jest powiązany z Twoim imieniem ani tożsamością." },
+      { h: "Jak wykorzystujemy Twoje dane", p: "• Aby wysyłać powiadomienia o alertach do Twoich kontaktów alarmowych, gdy check-in zostanie pominięty.\n• Aby planować codzienne przypomnienia w postaci powiadomień push na Twoim urządzeniu.\n• Aby wyświetlać historię check-inów w aplikacji." },
+      { h: "Udostępnianie danych", p: "Dane Twoich kontaktów alarmowych oraz identyfikator urządzenia są przesyłane na nasz serwer wyłącznie w celu umożliwienia dostarczenia alertów. Twoja lokalizacja (jeśli włączona) jest uwzględniona w wiadomości alertowej wysłanej do Twoich kontaktów.\n\nNie sprzedajemy, nie wynajmujemy ani nie udostępniamy Twoich danych reklamodawcom, dostawcom analityki ani żadnym osobom trzecim poza zakresem niezbędnym do świadczenia usługi." },
+      { h: "Przechowywanie danych i bezpieczeństwo", p: "• Informacje kontaktowe są zaszyfrowane na Twoim urządzeniu przy użyciu iOS Keychain (expo-secure-store).\n• Nasz serwer przechowuje tylko minimalne dane niezbędne do dostarczania powiadomień.\n• Żadne hasła ani dane uwierzytelniające nie są przechowywane." },
+      { h: "Twoje prawa", p: "• Usuń wszystkie dane aplikacji w dowolnym momencie przez Ustawienia → Zresetuj wszystkie dane.\n• Wyłącz udostępnianie lokalizacji w dowolnym momencie w Ustawieniach.\n• Usuń kontakty alarmowe w dowolnym momencie.\n• Korzystanie z tej aplikacji nie wymaga konta ani rejestracji." },
+      { h: "Prywatność dzieci", p: "UOKnow nie jest kierowane do dzieci poniżej 13 roku życia. Nie gromadzimy świadomie danych od dzieci." },
+      { h: "Zmiany w polityce", p: "Możemy od czasu do czasu aktualizować tę politykę. Najnowsza wersja jest zawsze dostępna pod tym adresem URL i w aplikacji." },
+      { h: "Kontakt", p: "W przypadku pytań dotyczących prywatności lub żądań dotyczących danych prosimy o kontakt za pośrednictwem wpisu w App Store." }
+    ]
+  },
+  tr: {
+    title: "UOKnow — Şu an iyi misin?",
+    subtitle: "Son güncelleme: Mayıs 2026",
+    dir: "ltr",
+    s: [
+      { h: "Genel Bakış", p: "UOKnow (\"Şu an iyi misin?\"), kişisel güvenlik kontrol uygulamasıdır. Belirlenen zaman diliminde kontrol yapmazsanız, belirlediğiniz acil kişiler bilgilendirilir. Bu politika, topladığımız verileri, bunları nasıl kullandığımızı ve haklarınızı açıklar." },
+      { h: "Topladığımız Veriler", p: "• Acil kişi bilgileri – eklediğiniz adlar, e-posta adresleri ve telefon numaraları. iOS Keychain aracılığıyla cihazınızda şifrelenmiş olarak saklanır.\n• Kontrol zaman damgaları – kaydettiğiniz her kontrolün tarihi ve saati.\n• Konum (isteğe bağlı) – konum paylaşımını etkinleştirirseniz, kontrol sırasındaki GPS koordinatlarınız kişilerinize gönderilen uyarılara eklenir. Konum hiçbir zaman arka planda toplanmaz.\n• Cihaz tanımlayıcısı – cihazınızda yerel olarak oluşturulan rastgele bir kimlik. Adınızla veya kimliğinizle bağlantılı değildir." },
+      { h: "Verilerinizi Nasıl Kullanıyoruz", p: "• Kontrol kaçırıldığında acil kişilerinize uyarı bildirimleri göndermek için.\n• Cihazınızda günlük hatırlatma bildirimleri planlamak için.\n• Uygulama içinde kontrol geçmişinizi görüntülemek için." },
+      { h: "Veri Paylaşımı", p: "Acil kişi bilgileriniz ve cihaz tanımlayıcınız yalnızca uyarıların iletilmesini sağlamak amacıyla sunucumuza iletilir. Konumunuz (etkinleştirilmişse) kişilerinize gönderilen uyarı mesajına dahil edilir.\n\nVerilerinizi reklamcılara, analiz sağlayıcılarına veya hizmetin sunulması için gerekli olanın ötesinde üçüncü taraflara satmıyor, kiralamıyor veya paylaşmıyoruz." },
+      { h: "Veri Depolama ve Güvenlik", p: "• Kişi bilgileri iOS Keychain (expo-secure-store) kullanılarak cihazınızda şifrelenir.\n• Sunucumuz yalnızca bildirimlerin iletilmesi için gereken minimum verileri saklar.\n• Hiçbir parola veya kimlik doğrulama bilgisi saklanmaz." },
+      { h: "Haklarınız", p: "• Ayarlar → Tüm Verileri Sıfırla yoluyla istediğiniz zaman tüm uygulama verilerini silin.\n• Ayarlar'dan istediğiniz zaman konum paylaşımını devre dışı bırakın.\n• İstediğiniz zaman acil kişileri kaldırın.\n• Bu uygulamayı kullanmak için hesap veya kayıt gerekmez." },
+      { h: "Çocukların Gizliliği", p: "UOKnow, 13 yaşın altındaki çocuklara yönelik değildir. Bilerek çocuklardan veri toplamıyoruz." },
+      { h: "Bu Politikadaki Değişiklikler", p: "Bu politikayı zaman zaman güncelleyebiliriz. En son sürüm her zaman bu URL'de ve uygulamada mevcuttur." },
+      { h: "İletişim", p: "Gizlilikle ilgili sorular veya veri talepleri için lütfen App Store girişi aracılığıyla bizimle iletişime geçin." }
+    ]
+  },
+  uk: {
+    title: "UOKnow — Ти зараз в порядку?",
+    subtitle: "Останнє оновлення: травень 2026 р.",
+    dir: "ltr",
+    s: [
+      { h: "Огляд", p: "UOKnow («Ти зараз в порядку?») — застосунок для особистих перевірок безпеки. Якщо ви пропустили вікно відмітки, ваші призначені екстрені контакти отримають сповіщення. Ця політика пояснює, які дані ми збираємо, як їх використовуємо та які у вас права." },
+      { h: "Дані, які ми збираємо", p: "• Інформація про екстрені контакти – імена, адреси електронної пошти та номери телефонів, які ви додаєте. Зберігаються у зашифрованому вигляді на вашому пристрої через iOS Keychain.\n• Мітки часу відміток – дата та час кожної здійсненої відмітки.\n• Місцезнаходження (необов'язково) – якщо ви ввімкнули спільний доступ до місцезнаходження, ваші GPS-координати під час відмітки додаються до сповіщень, що надсилаються контактам. Місцезнаходження ніколи не збирається у фоновому режимі.\n• Ідентифікатор пристрою – випадковий ідентифікатор, згенерований локально на вашому пристрої. Він не пов'язаний з вашим ім'ям або особистістю." },
+      { h: "Як ми використовуємо ваші дані", p: "• Для надсилання сповіщень-попереджень вашим екстреним контактам у разі пропуску відмітки.\n• Для планування щоденних нагадувань у вигляді push-сповіщень на вашому пристрої.\n• Для відображення історії відміток у застосунку." },
+      { h: "Передача даних", p: "Дані ваших екстрених контактів та ідентифікатор пристрою передаються на наш сервер виключно для забезпечення доставки сповіщень. Ваше місцезнаходження (якщо ввімкнено) включається до повідомлення-попередження, що надсилається вашим контактам.\n\nМи не продаємо, не здаємо в оренду та не передаємо ваші дані рекламодавцям, аналітичним провайдерам або третім особам понад те, що необхідно для надання послуги." },
+      { h: "Зберігання даних і безпека", p: "• Контактна інформація зашифрована на вашому пристрої за допомогою iOS Keychain (expo-secure-store).\n• Наш сервер зберігає лише мінімально необхідні дані для доставки сповіщень.\n• Паролі та облікові дані для аутентифікації не зберігаються." },
+      { h: "Ваші права", p: "• Видаліть усі дані застосунку будь-коли через «Налаштування → Скинути всі дані».\n• Вимкніть спільний доступ до місцезнаходження будь-коли в «Налаштуваннях».\n• Видаліть екстрені контакти будь-коли.\n• Для використання цього застосунку не потрібен обліковий запис або реєстрація." },
+      { h: "Конфіденційність дітей", p: "UOKnow не призначений для дітей до 13 років. Ми свідомо не збираємо дані від дітей." },
+      { h: "Зміни в цій політиці", p: "Ми можемо час від часу оновлювати цю політику. Остання версія завжди доступна за цим URL та в застосунку." },
+      { h: "Контакт", p: "З будь-яких питань щодо конфіденційності або запитів на дані, будь ласка, зв'яжіться з нами через сторінку App Store." }
+    ]
+  },
+  sv: {
+    title: "UOKnow — Mår du bra nu?",
+    subtitle: "Senast uppdaterad: maj 2026",
+    dir: "ltr",
+    s: [
+      { h: "Översikt", p: "UOKnow (\"Mår du bra nu?\") är en personlig säkerhets-check-in-app. När du missar ett incheckningsfönster meddelas dina utsedda nödkontakter. Denna policy förklarar vilka uppgifter vi samlar in, hur vi använder dem och dina rättigheter." },
+      { h: "Uppgifter vi samlar in", p: "• Information om nödkontakter – de namn, e-postadresser och telefonnummer du lägger till. Lagras krypterat på din enhet via iOS Keychain.\n• Tidsstämplar för incheckningar – datum och tid för varje incheckning du registrerar.\n• Plats (valfritt) – om du aktiverar platsdelning bifogas dina GPS-koordinater vid incheckningstillfället till aviseringar som skickas till dina kontakter. Plats samlas aldrig in i bakgrunden.\n• Enhetsidentifierare – ett slumpmässigt ID som genereras lokalt på din enhet. Det är inte kopplat till ditt namn eller din identitet." },
+      { h: "Hur vi använder dina uppgifter", p: "• För att skicka varningsmeddelanden till dina nödkontakter när en incheckning missas.\n• För att schemalägga dagliga påminnelser som push-meddelanden på din enhet.\n• För att visa din incheckningshistorik i appen." },
+      { h: "Delning av uppgifter", p: "Dina nödkontaktuppgifter och enhetsidentifierare överförs till vår server enbart för att möjliggöra leverans av aviseringar. Din plats (om aktiverad) ingår i aviseringsmeddelandet som skickas till dina kontakter.\n\nVi säljer, hyr ut eller delar inte dina uppgifter med annonsörer, analysleverantörer eller tredje parter utöver vad som krävs för att tillhandahålla tjänsten." },
+      { h: "Datalagring och säkerhet", p: "• Kontaktinformation är krypterad på din enhet med iOS Keychain (expo-secure-store).\n• Vår server behåller bara den minsta data som behövs för att leverera meddelanden.\n• Inga lösenord eller autentiseringsuppgifter lagras." },
+      { h: "Dina rättigheter", p: "• Radera alla appdata när som helst via Inställningar → Återställ alla data.\n• Inaktivera platsdelning när som helst i Inställningar.\n• Ta bort nödkontakter när som helst.\n• Inget konto eller registrering krävs för att använda denna app." },
+      { h: "Barns integritet", p: "UOKnow riktar sig inte till barn under 13 år. Vi samlar inte medvetet in data från barn." },
+      { h: "Ändringar i denna policy", p: "Vi kan uppdatera denna policy från tid till annan. Den senaste versionen finns alltid tillgänglig på denna URL och i appen." },
+      { h: "Kontakt", p: "För frågor relaterade till integritet eller databegäranden, kontakta oss via App Store-listingen." }
+    ]
+  },
+  no: {
+    title: "UOKnow — Har du det bra nå?",
+    subtitle: "Sist oppdatert: mai 2026",
+    dir: "ltr",
+    s: [
+      { h: "Oversikt", p: "UOKnow («Har du det bra nå?») er en personlig sikkerhets-sjekk-inn-app. Når du glemmer å sjekke inn innen den angitte tidsrammen, varsles dine utpekte nødkontakter. Denne policyen forklarer hvilke data vi samler inn, hvordan vi bruker dem, og dine rettigheter." },
+      { h: "Data vi samler inn", p: "• Informasjon om nødkontakter – navnene, e-postadressene og telefonnumrene du legger til. Lagres kryptert på enheten din via iOS Keychain.\n• Tidsstempler for innsjekking – dato og klokkeslett for hver innsjekking du registrerer.\n• Plassering (valgfritt) – hvis du aktiverer plasseringsdeling, legges GPS-koordinatene dine ved innsjekkingstidspunktet ved i varslene som sendes til kontaktene dine. Plassering samles aldri inn i bakgrunnen.\n• Enhetsidentifikator – en tilfeldig ID generert lokalt på enheten din. Den er ikke knyttet til navnet eller identiteten din." },
+      { h: "Slik bruker vi dataene dine", p: "• For å sende varselmeldinger til nødkontaktene dine når en innsjekking blir oversett.\n• For å planlegge daglige påminnelses-push-varsler på enheten din.\n• For å vise innsjekkingshistorikken din i appen." },
+      { h: "Deling av data", p: "Nødkontaktdetaljer og enhetsidentifikatoren din overføres til serveren vår utelukkende for å muliggjøre levering av varsler. Plasseringen din (hvis aktivert) er inkludert i varselsmeldingen som sendes til kontaktene dine.\n\nVi selger, leier ut eller deler ikke dataene dine med annonsører, analyseleverandører eller tredjeparter utover det som er nødvendig for å levere tjenesten." },
+      { h: "Datalagring og sikkerhet", p: "• Kontaktinformasjon er kryptert på enheten din ved hjelp av iOS Keychain (expo-secure-store).\n• Serveren vår beholder bare de minimumsdataene som er nødvendige for å levere varsler.\n• Ingen passord eller autentiseringslegitimasjon lagres." },
+      { h: "Dine rettigheter", p: "• Slett alle appdata når som helst via Innstillinger → Tilbakestill alle data.\n• Deaktiver plasseringsdeling når som helst i Innstillinger.\n• Fjern nødkontakter når som helst.\n• Ingen konto eller registrering er nødvendig for å bruke denne appen." },
+      { h: "Barns personvern", p: "UOKnow er ikke rettet mot barn under 13 år. Vi samler ikke bevisst inn data fra barn." },
+      { h: "Endringer i denne policyen", p: "Vi kan oppdatere denne policyen fra tid til annen. Den nyeste versjonen er alltid tilgjengelig på denne URL-en og i appen." },
+      { h: "Kontakt", p: "For spørsmål om personvern eller dataforespørsler, vennligst kontakt oss via App Store-oppføringen." }
+    ]
+  },
+  da: {
+    title: "UOKnow — Har du det godt nu?",
+    subtitle: "Senest opdateret: maj 2026",
+    dir: "ltr",
+    s: [
+      { h: "Oversigt", p: "UOKnow (\"Har du det godt nu?\") er en personlig sikkerhedstjekind-app. Når du går glip af et tjekind-vindue, underrettes dine udpegede nødkontakter. Denne politik forklarer, hvilke data vi indsamler, hvordan vi bruger dem, og dine rettigheder." },
+      { h: "Data vi indsamler", p: "• Oplysninger om nødkontakter – de navne, e-mailadresser og telefonnumre, du tilføjer. Lagret krypteret på din enhed via iOS Keychain.\n• Tidsstempler for tjekind – dato og klokkeslæt for hvert tjekind, du registrerer.\n• Placering (valgfrit) – hvis du aktiverer deling af placering, vedhæftes dine GPS-koordinater på tidspunktet for tjekind til de advarsler, der sendes til dine kontakter. Placering indsamles aldrig i baggrunden.\n• Enhedsidentifikator – et tilfældigt ID genereret lokalt på din enhed. Det er ikke knyttet til dit navn eller din identitet." },
+      { h: "Sådan bruger vi dine data", p: "• For at sende advarselsnotifikationer til dine nødkontakter, når et tjekind er gået glip af.\n• For at planlægge daglige påmindelsespush-notifikationer på din enhed.\n• For at vise din tjekind-historik i appen." },
+      { h: "Deling af data", p: "Dine nødkontaktoplysninger og enhedsidentifikatoren overføres til vores server udelukkende for at muliggøre levering af advarsler. Din placering (hvis aktiveret) er inkluderet i advarselsmeddelelsen, der sendes til dine kontakter.\n\nVi sælger, udlejer eller deler ikke dine data med annoncører, analyseleverandører eller tredjeparter ud over, hvad der er nødvendigt for at levere tjenesten." },
+      { h: "Datalagring og sikkerhed", p: "• Kontaktoplysninger er krypteret på din enhed ved hjælp af iOS Keychain (expo-secure-store).\n• Vores server gemmer kun de minimale data, der er nødvendige for at levere notifikationer.\n• Ingen adgangskoder eller godkendelsesoplysninger gemmes." },
+      { h: "Dine rettigheder", p: "• Slet alle appdata når som helst via Indstillinger → Nulstil alle data.\n• Deaktiver deling af placering når som helst i Indstillinger.\n• Fjern nødkontakter når som helst.\n• Der kræves ingen konto eller registrering for at bruge denne app." },
+      { h: "Børns privatliv", p: "UOKnow er ikke rettet mod børn under 13 år. Vi indsamler ikke bevidst data fra børn." },
+      { h: "Ændringer i denne politik", p: "Vi kan opdatere denne politik fra tid til anden. Den nyeste version er altid tilgængelig på denne URL og i appen." },
+      { h: "Kontakt", p: "For spørgsmål relateret til fortrolighed eller anmodninger om data, kontakt os via App Store-listingen." }
+    ]
+  },
+  fi: {
+    title: "UOKnow — Voitko hyvin nyt?",
+    subtitle: "Viimeksi päivitetty: toukokuu 2026",
+    dir: "ltr",
+    s: [
+      { h: "Yleiskatsaus", p: "UOKnow (\"Voitko hyvin nyt?\") on henkilökohtainen turvallisuuden kirjautumissovellus. Kun unohdat kirjautua sisään asetetun aikarajan kuluessa, nimetyille hätäyhteyshenkilöille lähetetään ilmoitus. Tässä käytännössä selitetään, mitä tietoja keräämme, miten niitä käytämme ja mitkä ovat oikeutesi." },
+      { h: "Keräämämme tiedot", p: "• Hätäyhteyshenkilötiedot – lisäämäsi nimet, sähköpostiosoitteet ja puhelinnumerot. Tallennetaan salattuina laitteellesi iOS Keychain -palvelun kautta.\n• Kirjautumisen aikaleima – jokaisen kirjautumisesi päivämäärä ja kellonaika.\n• Sijainti (valinnainen) – jos otat sijainninjaon käyttöön, GPS-koordinaattisi kirjautumishetkellä liitetään yhteyshenkilöillesi lähetettäviin hälytyksiin. Sijaintia ei koskaan kerätä taustalla.\n• Laitteen tunniste – satunnainen laitteellesi paikallisesti luotu tunnus. Se ei ole yhteydessä nimeesi tai henkilöllisyyteesi." },
+      { h: "Miten käytämme tietojasi", p: "• Lähetämme hälytysviestejä hätäyhteyshenkilöillesi, kun kirjautuminen jää väliin.\n• Ajoitamme päivittäiset muistutusilmoitukset laitteellesi.\n• Näytämme kirjautumishistoriasi sovelluksessa." },
+      { h: "Tietojen jakaminen", p: "Hätäyhteyshenkilötietosi ja laitetunnisteesi lähetetään palvelimellemme ainoastaan hälytysten toimittamisen mahdollistamiseksi. Sijaintisi (jos käytössä) sisältyy yhteyshenkilöillesi lähetettävään hälytysviestiin.\n\nEmme myy, vuokraa tai jaa tietojasi mainostajille, analytiikantarjoajille tai kolmansille osapuolille enemmän kuin palvelun tarjoaminen vaatii." },
+      { h: "Tietojen tallennus ja turvallisuus", p: "• Yhteystiedot on salattu laitteellesi iOS Keychain -palvelun (expo-secure-store) avulla.\n• Palvelimemme säilyttää vain ilmoitusten toimittamiseen tarvittavan vähimmäistiedon.\n• Salasanoja tai todentamistietoja ei tallenneta." },
+      { h: "Oikeutesi", p: "• Poista kaikki sovellustiedot milloin tahansa Asetukset → Nollaa kaikki tiedot -valikossa.\n• Poista sijainninjakaminen käytöstä milloin tahansa Asetuksista.\n• Poista hätäyhteyshenkilöt milloin tahansa.\n• Tämän sovelluksen käyttäminen ei vaadi tiliä tai rekisteröitymistä." },
+      { h: "Lasten yksityisyys", p: "UOKnow ei ole tarkoitettu alle 13-vuotiaille lapsille. Emme kerää tietoja lapsilta tietoisesti." },
+      { h: "Muutokset tähän käytäntöön", p: "Voimme päivittää tätä käytäntöä ajoittain. Uusin versio on aina saatavilla tässä URL-osoitteessa ja sovelluksessa." },
+      { h: "Yhteystiedot", p: "Yksityisyyteen liittyvissä kysymyksissä tai tietopyynnöissä ota yhteyttä App Store -listauksemme kautta." }
+    ]
   }
+};
+
+function render(code) {
+  const t = T[code] || T.en;
+  document.documentElement.lang = code;
+  document.documentElement.dir = t.dir || 'ltr';
+  document.title = t.title + ' — Privacy Policy';
+  document.getElementById('subtitle').textContent = t.subtitle;
+  document.getElementById('langSelect').value = code;
+  const html = t.s.map((sec, i) =>
+    (i > 0 ? '<hr>' : '') +
+    '<h2>' + sec.h + '</h2><p>' + sec.p.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</p>'
+  ).join('');
+  document.getElementById('content').innerHTML = html;
+  localStorage.setItem('uok-lang', code);
+}
+
+(function init() {
+  const saved = localStorage.getItem('uok-lang');
+  const browser = (navigator.language || 'en').toLowerCase();
+  const codes = Object.keys(T);
+  const matched = codes.find(c => browser === c.toLowerCase()) ||
+                  codes.find(c => browser.startsWith(c.toLowerCase().split('-')[0])) ||
+                  'en';
+  render(saved && T[saved] ? saved : matched);
+})();
 </script>
 </body>
 </html>
